@@ -188,6 +188,8 @@ class SlackStatusPush(http.HttpStatusPushBase):
 
     @defer.inlineCallbacks
     def send(self, build, key):
+        print("build thingy stringy:")
+        print(build)
         postData = yield self.getBuildDetailsAndSendMessage(build, key)
         if not postData:
             return
