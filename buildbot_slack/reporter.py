@@ -115,9 +115,17 @@ class SlackStatusPush(http.HttpStatusPushBase):
                     )
                 repositories = sourcestamp["repository"]
                 if repositories:
-                    fields.append(
-                        {"title": "Repository", "value": repositories, "short": True}
-                    )
+                    split_repo = repositories.split("@", 1)
+
+                    if len(split_repo) > 1:
+                        fields.append(
+                            {"title": "Repository", "value": split_repo[1], "short": True}
+                        )
+                    else:
+                        fields.append(
+                            {"title": "Repository", "value": repositories, "short": True}
+                        )
+
                 responsible_users = yield utils.getResponsibleUsersForBuild(
                     self.master, build["buildid"]
                 )
