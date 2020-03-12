@@ -185,10 +185,13 @@ class SlackStatusPush(http.HttpStatusPushBase):
 
     # returns a Deferred that returns None
     def buildStarted(self, key, build):
-        return self.send(build, key[2])
+        return {} # self.send(build, key[2])
 
     # returns a Deferred that returns None
     def buildFinished(self, key, build):
+        logger.warn("build status: ")
+        logger.warn(build["results"])
+
         return self.send(build, key[2])
 
     def getExtraParams(self, build, event_name):
