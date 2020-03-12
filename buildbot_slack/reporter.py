@@ -115,7 +115,7 @@ class SlackStatusPush(http.HttpStatusPushBase):
                     )
                 repositories = sourcestamp["repository"]
                 if repositories:
-                    split_repo = repositories.split("@", 1)
+                    split_repo = repositories.split('@', 1)
 
                     if len(split_repo) > 1:
                         fields.append(
